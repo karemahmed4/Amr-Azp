@@ -1,3 +1,38 @@
+// Initialize Swiper for Work Results
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.querySelector('.workSwiper')) {
+        new Swiper('.workSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+            grabCursor: true,
+            speed: 800,
+            effect: 'slide',
+        });
+    }
+});
+
 // Initialize AOS
 AOS.init({
     duration: 800,
@@ -93,22 +128,4 @@ window.addEventListener('scroll', () => {
             link.classList.add('active');
         }
     });
-});
-
-// Add animation to cards on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.service-card, .expertise-card, .distinction-card').forEach(card => {
-    observer.observe(card);
 });
